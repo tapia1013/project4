@@ -1,0 +1,41 @@
+var notify = document.querySelector('.notify')
+var albums = document.querySelectorAll('.album')
+var itemsTotal = document.querySelector('.items-total')
+var saveBtn = document.querySelector('.button')
+
+var albumsSelected = []
+var i = 0
+
+while(i < albums.length) {
+  albums[i].onclick = function(e) {
+      var albumTitle = this.querySelector('.title').textContent
+      
+      if(this.classList.contains('slected') !== true) {
+          this.classList.add("selected")
+          albumsSelected.push(albumTitle)
+      } else {
+          this.classList.remove("selected")
+          albumsSelected = albumsSelected.filter(function(item) {
+              return item !== albumTitle
+          })
+      }
+      console.log(albumsSelected)
+  }
+  i++
+}
+
+saveBtn.onclick = function() {
+  itemsTotal.textContent = albumsSelected.length + ' items saved'
+  notify.classList.add('active')
+
+  setTimeout(function() {
+      notify.classList.remove('active');
+  }, 2000)
+
+  console.log('saved')
+}
+
+
+
+
+
